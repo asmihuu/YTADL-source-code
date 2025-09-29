@@ -47,7 +47,9 @@ pip install -r requirements.txt
 
 ### 3. Run / Test
 
-Start the application by running both servers: use uvicorn app.py in the ./appconfig terminal, and run npm run dev in the ./ui terminal.
+Start the application by running both servers: 
+use uvicorn app.py in the ./appconfig terminal, and 
+npm run dev in the ./ui terminal.
 
 ---
 
