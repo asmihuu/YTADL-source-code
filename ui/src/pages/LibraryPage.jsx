@@ -71,7 +71,7 @@ export default function Library() {
   );
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6">
       {/* Search Bar */}
       <div className="flex items-center gap-2">
         <Search className="w-5 h-5 text-gray-500" />
@@ -90,47 +90,52 @@ export default function Library() {
       ) : filteredTracks.length === 0 ? (
         <p className="text-gray-400">No tracks found.</p>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {filteredTracks.map((track) => {
-            const isCurrent = playlist[currentTrackIndex]?.audio === track.audio;
+        <div className="flex flex-col pb-1 h-[calc(100vh-14rem)]">
+          {/* Scrollable grid */}
+          <div className="flex-1 overflow-y-auto pr-3 scrollbar">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {filteredTracks.map((track) => {
+                const isCurrent = playlist[currentTrackIndex]?.audio === track.audio;
 
-            return (
-              <div
-                key={track.id}
-                className="bg-white dark:bg-gray-900 rounded-xl shadow p-3 hover:shadow-lg transition"
-              >
-                <img
-                  src={track.thumbnail || "https://via.placeholder.com/150"}
-                  alt={track.title}
-                  className="rounded-lg w-full h-32 object-cover"
-                />
-                <div className="mt-3 flex justify-between items-start">
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-semibold truncate">{track.title}</h3>
-                    <p className="text-xs text-gray-500 truncate">{track.uploader}</p>
-                    <p className="text-xs text-gray-400">
-                      {formatDuration(track.duration)}
-                    </p>
-                  </div>
+                return (
+                  <div
+                    key={track.id}
+                    className="bg-white dark:bg-gray-900 rounded-xl shadow p-3 hover:shadow-lg transition"
+                  >
+                    <img
+                      src={track.thumbnail || "https://via.placeholder.com/150"}
+                      alt={track.title}
+                      className="rounded-lg w-full h-32 object-cover"
+                    />
+                    <div className="mt-3 flex justify-between items-start">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm font-semibold truncate">{track.title}</h3>
+                        <p className="text-xs text-gray-500 truncate">{track.uploader}</p>
+                        <p className="text-xs text-gray-400">
+                          {formatDuration(track.duration)}
+                        </p>
+                      </div>
 
-                  <div className="flex flex-col items-center gap-2 ml-2">
-                    <button
-                      onClick={() => playTrack(track)}
-                      className="p-2 rounded-full bg-brown-500 hover:bg-brown-600 text-white transition"
-                    >
-                      {isCurrent && isPlaying ? <Pause size={16} /> : <Play size={16} />}
-                    </button>
-                    <button
-                      onClick={() => removeTrack(track.id)}
-                      className="p-2 rounded-full hover:bg-red-100 dark:hover:bg-red-900/40 text-red-500 transition"
-                    >
-                      <Trash size={16} />
-                    </button>
+                      <div className="flex flex-col items-center gap-2 ml-2">
+                        <button
+                          onClick={() => playTrack(track)}
+                          className="p-2 rounded-full bg-brown-500 hover:bg-brown-600 text-white transition"
+                        >
+                          {isCurrent && isPlaying ? <Pause size={16} /> : <Play size={16} />}
+                        </button>
+                        <button
+                          onClick={() => removeTrack(track.id)}
+                          className="p-2 rounded-full hover:bg-red-100 dark:hover:bg-red-900/40 text-red-500 transition"
+                        >
+                          <Trash size={16} />
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
+                );
+              })}
+            </div>
+          </div>
         </div>
       )}
     </div>

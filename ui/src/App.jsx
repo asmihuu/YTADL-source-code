@@ -8,10 +8,13 @@ import { Outlet } from "react-router-dom";
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
-  // Global music state
+  /* === Global Music State === */
   const [playlist, setPlaylist] = useState([]);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  /* === Global Download State === */
+  const [downloads, setDownloads] = useState([]);
 
   // Load all downloaded tracks from backend on app start
   useEffect(() => {
@@ -34,12 +37,12 @@ function App() {
       const existingIndex = prev.findIndex((t) => t.audio === track.audio);
       if (existingIndex !== -1) {
         setCurrentTrackIndex(existingIndex);
-        setIsPlaying(true); // automatically play existing track
+        setIsPlaying(true);
         return prev;
       }
       const newPlaylist = [...prev, track];
       setCurrentTrackIndex(newPlaylist.length - 1);
-      setIsPlaying(true); // automatically play new track
+      setIsPlaying(true);
       return newPlaylist;
     });
   };
@@ -47,6 +50,7 @@ function App() {
   return (
     <div className={`${darkMode ? "dark" : ""} h-screen flex flex-col`}>
       <Topbar darkMode={darkMode} setDarkMode={setDarkMode} />
+
       <div className="flex flex-1">
         <Sidebar />
         <main className="flex-1 p-6 overflow-y-auto">
@@ -58,18 +62,24 @@ function App() {
               currentTrackIndex,
               setCurrentTrackIndex,
               isPlaying,
-              setIsPlaying
+              setIsPlaying,
+              downloads,
+              setDownloads, // ⬅️ Now available in all pages
             }}
           />
         </main>
       </div>
-      <MusicPlayer
-        playlist={playlist}
-        currentTrackIndex={currentTrackIndex}
-        setCurrentTrackIndex={setCurrentTrackIndex}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-      />
+
+      {/* Music Player - fixed height */}
+      <div className="fixed bottom-0 left-0 right-0 z-50">
+        <MusicPlayer
+          playlist={playlist}
+          currentTrackIndex={currentTrackIndex}
+          setCurrentTrackIndex={setCurrentTrackIndex}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+        />
+      </div>
     </div>
   );
 }
