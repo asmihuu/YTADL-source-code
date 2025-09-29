@@ -37,6 +37,8 @@ appconfig/bin/
 
 These tools are required for downloading, processing, and handling audio files.
 
+> **Note:** If the downloader is not working, make sure to update `yt-dlp` to the latest version.
+
 ### 2. Python Requirements
 
 Install the required Python dependencies by running:
