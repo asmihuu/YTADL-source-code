@@ -1,6 +1,6 @@
-# YTADPL Source Code
+# YTADL Source Code
 
-**YTADPL (YouTube Audio Downloader Player)** is a desktop application that allows you to download audio from YouTube with an interactive and user-friendly interface. It also features a built-in music player and a local music library.
+**YTADL (YouTube Audio Downloader)** is a desktop application that allows you to download audio from YouTube with an interactive and user-friendly interface. It also features a built-in music player and a local music library.
 
 > **Note:** This is a work-in-progress. The application will be fully built once all core features are implemented and stable.
 
@@ -45,6 +45,10 @@ Install the required Python dependencies by running:
 pip install -r requirements.txt
 ```
 
+### 3. Run / Test
+
+Start the application by running both servers: use uvicorn app.py in the ./appconfig terminal, and run npm run dev in the ./ui terminal.
+
 ---
 
 ## Build
@@ -56,7 +60,7 @@ The application will be packaged and built after all core features are completed
 ## Project Structure (Simplified)
 
 ```
-YTADPL/
+YTADL/
 ├── appconfig/        # Backend logic (Python)
 │   └── bin/          # Required binaries/exe go here
 ├── ui/               # Frontend and UI logic (Vite + Electron)
