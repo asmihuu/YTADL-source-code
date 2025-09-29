@@ -45,8 +45,6 @@ Install the required Python dependencies by running:
 pip install -r requirements.txt
 ```
 
-> **Note:** If you're using a `.exe` installer instead of `requirements.txt`, update this section accordingly.
-
 ---
 
 ## Build
