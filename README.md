@@ -37,7 +37,7 @@ appconfig/bin/
 
 These tools are required for downloading, processing, and handling audio files.
 
-> **Note:** If the downloader is not working, make sure to update `yt-dlp` to the latest version.
+> **Note:** If the downloader is not working, update `yt-dlp` to the latest version by running `./yt-dlp.exe -U` in the /appconfig/bin terminal.
 
 ### 2. Python Requirements
 
